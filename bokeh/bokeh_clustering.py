@@ -39,7 +39,7 @@ clusters = Slider(title="Cluster count", value=3, start=1, end=9, step = 1)
 # Set up plot
 source = ColumnDataSource(data=dict(x=[], y=[], color=[]))
 centers = ColumnDataSource(data=dict(cx=[], cy=[]))
-plot = figure(width=700, height=500, title='Iris k-means clustering')
+plot = figure(width=700, height=500, title='Iris K-means clustering')
 plot.circle(x="x", y="y", source=source, size=15, color="colors")
 plot.x(x="cx", y="cy", source=centers, color="black", size=20)
 
@@ -78,6 +78,6 @@ inputs = widgetbox(x_axis,y_axis,clusters)
 update() #initial load of data
 
 curdoc().add_root(row(inputs, plot, width=1000))
-curdoc().title = "Iris k-means clustering"
+curdoc().title = "Iris K-means clustering"
 
 
