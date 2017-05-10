@@ -37,7 +37,7 @@ clusters = Slider(title="Cluster count", value=3, start=1, end=9, step = 1)
 
 
 # Set up plot
-source = ColumnDataSource(data=dict(x=[], y=[], color=[]))
+source = ColumnDataSource(data=dict(x=[], y=[], colors=[]))
 centers = ColumnDataSource(data=dict(cx=[], cy=[]))
 plot = figure(width=700, height=500, title='Iris K-means clustering')
 plot.circle(x="x", y="y", source=source, size=15, color="colors")
