@@ -39,13 +39,19 @@ class WCApp(server.App):
         "type": "html",
         "id": "html1",
         "control_id": "update_data",
-        "tab": "Text"
-        
+        "tab": "Text"        
     }]
 
     def __init__(self):
         self.upload_data = None
         self.upload_file = None
+        self.english_stopwords = set(stopwords.words('english'))
+        self.regex = re.compile(r"(\b[-']\b)|[\W_]+")
+        self.wc_mask = np.array(Image.open("../data/python.png"))
+        
+    def storeUpload(self, file):
+        self.upload_file = file
+        self.upload_data = file.read()
 
     def html1(self, params):
         text = (
@@ -54,28 +60,16 @@ class WCApp(server.App):
         if self.upload_data is not None:
             text = self.upload_data
         return text
-
-    def storeUpload(self, file):
-        self.upload_file = file
-        self.upload_data = file.read()
    
-    def getData(self):
-        regex = re.compile(r"(\b[-']\b)|[\W_]+")
-        english_stopwords = set(stopwords.words('english'))
+    def getPlot(self, params):
         if self.upload_data is not None:
             txt = str(self.upload_data.decode("utf-8"))
-            txt = regex.sub(" ", txt).lower()
-        return txt, english_stopwords
-
-    def getPlot(self, params):
-        txt, english_stopwords = self.getData()
-        wc_mask = np.array(Image.open("../data/python.png"))
+            txt = self.regex.sub(" ", txt).lower()  
         limit = int(params['lim'])
-
         wordcloud = WordCloud(
             max_words=limit,
-            stopwords=english_stopwords,
-            mask=wc_mask,
+            stopwords=self.english_stopwords,
+            mask=self.wc_mask,
         ).generate(txt)
        
         fig = plt.figure()
