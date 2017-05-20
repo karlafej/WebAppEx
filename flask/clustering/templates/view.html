@@ -1,0 +1,17 @@
+<form method=post action="">
+<table>
+  {% for field in form %}
+    <tr>
+    <td>{{ field.label }}</td>
+    <td>{{ field(**{"onchange":"this.form.submit()"}) }}</td>
+    
+    </tr>
+  {% endfor %}
+</table>
+</form>
+
+<p>
+{% if result != None %}
+<img src="{{ result }}" width="500">
+{% endif %}
+</p>
