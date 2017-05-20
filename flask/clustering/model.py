@@ -3,18 +3,18 @@ from wtforms import Form, SelectField
 class InputForm(Form):
     x = SelectField(
         label='X value', 
-        choices=[(0, "sepal length (cm)"),
-            (1, "sepal width (cm)"),
-            (2, "petal length (cm)"),
-            (3, "petal width (cm)")],
+        choices=[(0, "Sepal length"),
+            (1, "Sepal width"),
+            (2, "Petal length"),
+            (3, "Petal width")],
         default = 0,
         )
     y = SelectField(
         label='Y value', 
-        choices=[(0, "sepal length (cm)"),
-            (1, "sepal width (cm)"),
-            (2, "petal length (cm)"),
-            (3, "petal width (cm)")],
+        choices=[(0, "Sepal length"),
+            (1, "Sepal width"),
+            (2, "Petal length"),
+            (3, "Petal width")],
         default = 2,
         )
     k = SelectField(

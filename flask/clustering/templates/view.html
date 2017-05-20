@@ -1,17 +1,37 @@
-<form method=post action="">
-<table>
-  {% for field in form %}
-    <tr>
-    <td>{{ field.label }}</td>
-    <td>{{ field(**{"onchange":"this.form.submit()"}) }}</td>
-    
-    </tr>
-  {% endfor %}
-</table>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-<p>
-{% if result != None %}
-<img src="{{ result }}" width="500">
-{% endif %}
-</p>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-4">
+    	<h3>Iris K-means clustering</h3>
+		<form class="navbar-form navbar-top" method=post action="">
+			<div class="form-group">
+ 	 	   		{% for field in form %}
+    			<div class="row">
+    				<div class="input-group">
+     					<label class="col-md-9" "control-label">
+        					 {{ field.label }} 
+      					</label>
+      					<div class="col-md-2">
+          					{{ field(**{"onchange":"this.form.submit()"}) }} 
+     					</div>
+    				</div>
+   				</div>
+   				{% endfor %}
+ 			</div>
+		</form>
+
+	</div>
+
+ 	<div class="col-md-8">
+		{% if result != None %}
+		<img src="{{ result }}" width="600">
+		{% endif %}
+	</div>
+
+</div>
+</div>
+
+</html>
