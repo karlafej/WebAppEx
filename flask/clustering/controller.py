@@ -13,7 +13,7 @@ def index():
                         int(form.k.data))
     else:
         result = get_plot(0, 2, 3)
-
+        
     return render_template('view.html', form=form, result=result)
 
 if __name__ == '__main__':
