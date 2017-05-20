@@ -45,28 +45,24 @@ class IrissApp(server.App):
         "id": "plot"
     }]
 
-    def getData(self):
-    	iris = datasets.load_iris()
-    	return iris
-
+    def __init__(self):
+    	self.iris = datasets.load_iris()
 
     def getPlot(self, params):
-        iris = self.getData()
         k = int(params['cluster'])
         x = int(params['x_axis'])
         y = int(params['y_axis'])
         k_means = KMeans(n_clusters= k )
-        k_means.fit(iris.data) 
+        k_means.fit(self.iris.data) 
         colormap = rainbow(np.linspace(0, 1, k))
         fig = plt.figure()
         splt = fig.add_subplot(1, 1, 1)
-        splt.scatter(iris.data[:,x], iris.data[:,y], c = colormap[k_means.labels_], s=40)
+        splt.scatter(self.iris.data[:,x], self.iris.data[:,y], c = colormap[k_means.labels_], s=40)
         splt.scatter(k_means.cluster_centers_[:,x], k_means.cluster_centers_[:,y], c = 'black', marker='x')
-        splt.set_xlabel(iris.feature_names[x])
-        splt.set_ylabel(iris.feature_names[y])
+        splt.set_xlabel(self.iris.feature_names[x])
+        splt.set_ylabel(self.iris.feature_names[y])
         return fig
         
-
 if __name__ == '__main__':
     app = IrissApp()
     app.launch()
