@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-4">
+    	<h3>Wordcloud</h3>
+
+		<form class="navbar-form navbar-top" method=post action="" enctype = "multipart/form-data">
+			<div class="form-group">
+ 	 	   		{% for field in form1 %}
+    			<div class="row">
+    				<div class="input-group">
+      					<div class="col-md-12">
+          					{{ field }} 
+     					</div>
+    				</div>
+   				</div>
+   				{% endfor %}
+ 			</div>
+		</form>
+
+  <form class="navbar-form navbar-top" method=post action="">
+      <div class="form-group">
+          {% for field in form2 %}
+          <div class="row">
+            <div class="input-group">
+              <label class="col-md-9" "control-label">
+                   {{ field.label }} 
+                </label>
+                <div class="col-md-3">
+                    {{ field(**{"onchange":"this.form.submit()"}) }} 
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+    </form>
+	</div>
+
+ 	<div class="col-md-8">
+		{% if result != None %}
+		<img src="data:image/png;base64,{{ result }}" width="600">
+		{% endif %}
+	</div>
+
+</div>
+</div>
+
+</html>
