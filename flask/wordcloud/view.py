@@ -2,11 +2,16 @@ from model import InputLim, InputFile
 from flask import Flask, render_template, request, session
 from compute import get_plot
 import re
+from flask_session import Session
 
 app = Flask(__name__)
-
+app.secret_key = 'sosecretsolongblablabla'
 regex = re.compile(r"(\b[-']\b)|[\W_]+")
 
+SESSION_TYPE = 'filesystem'
+SESSION_PERMANENT = False
+app.config.from_object(__name__)
+Session(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -22,16 +27,14 @@ def index():
         txt=str(txt.decode("utf-8"))
         txt=regex.sub(" ", txt).lower() 
         if len(txt)>0 :
-            global text
-            text = txt
+            session['text'] = txt
         	
-    if 'text' in globals():
-        result = get_plot(session['limit'], text)       
+    if 'text' in session:
+        result = get_plot(session['limit'], session['text'])       
     else:
         result = None
         
     return render_template('view.html', form1=form1, form2 = form2, result=result)
 
 if __name__ == '__main__':
-    app.secret_key = 'sosecretsolongblablabla'
     app.run(debug=True)
