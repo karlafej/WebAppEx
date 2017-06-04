@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+</style>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-12">
+  <br/>
+  <br/>
+   <form class="navbar-form navbar-top" method=post action="">
+          <div class="row">
+            <div class="input-group">
+              <label class="control-label">
+                   {{ form.imgurl.label }} 
+                </label><br />
+                {{ form.imgurl(**{"onchange":"this.form.submit()"}) }} 
+            </div>
+          </div> <br />
+    </form>
+  </div>
+
+  <div class="col-sm-12">
+
+   <form class="navbar-form navbar-top" method=post action="">
+          <div class="row">
+            <div class="input-group">
+              <label class="control-label">
+                   {{ form.imageset.label }} 
+                </label><br />
+                {{ form.imageset(**{"onclick":"(this).closest('form').submit()"}) }} 
+            </div>
+          </div> <br />
+    </form>
+  </div>
+
+  <div class="col-sm-12" align="center">
+    {% if results|length > 0 %}
+        <a href = {{ results['link'] }} ><img src={{ results['url'] }} ></a>
+        <h3>{{ results['name'] }}</h3>
+        Confidence: {{ results['confidence'] }}
+        <br /><br />
+    {% endif %}
+  </div>
+
+</div>
+</div>
+
+</html>
