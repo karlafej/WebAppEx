@@ -10,6 +10,7 @@ regex = re.compile(r"(\b[-']\b)|[\W_]+")
 
 SESSION_TYPE = 'filesystem'
 SESSION_PERMANENT = False
+PERMANENT_SESSION_LIFETIME = 300
 app.config.from_object(__name__)
 Session(app)
 
