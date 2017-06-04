@@ -8,12 +8,13 @@
   <br/>
   <br/>
    <form class="navbar-form navbar-top" method=post action="">
+    {{ form1.hidden_tag() }}
           <div class="row">
             <div class="input-group">
               <label class="control-label">
-                   {{ form.imgurl.label }} 
+                   {{ form1.imgurl.label }} 
                 </label><br />
-                {{ form.imgurl(**{"onchange":"this.form.submit()"}) }} 
+                {{ form1.imgurl(**{"onchange":"this.form.submit()"}) }} 
             </div>
           </div> <br />
     </form>
@@ -22,12 +23,13 @@
   <div class="col-sm-12">
 
    <form class="navbar-form navbar-top" method=post action="">
+          {{ form2.hidden_tag() }}
           <div class="row">
             <div class="input-group">
               <label class="control-label">
-                   {{ form.imageset.label }} 
+                   {{ form2.imageset.label }} 
                 </label><br />
-                {{ form.imageset(**{"onclick":"(this).closest('form').submit()"}) }} 
+                {{ form2.imageset(**{"onclick":"(this).closest('form').submit()"}) }} 
             </div>
           </div> <br />
     </form>
@@ -35,10 +37,18 @@
 
   <div class="col-sm-12" align="center">
     {% if results|length > 0 %}
-        <a href = {{ results['link'] }} ><img src={{ results['url'] }} ></a>
+        <a href = {{ results['link'] }} ><img src={{ results['url'] }} style= "max-width:400px"></a>
         <h3>{{ results['name'] }}</h3>
         Confidence: {{ results['confidence'] }}
         <br /><br />
+         <form  method=post action="">
+          {{ form3.hidden_tag() }}
+          <div class="row">
+            <div class="input-group">
+                {{ form3.cycle}} 
+            </div>
+          </div> <br />
+    </form>
     {% endif %}
   </div>
 
