@@ -24,6 +24,12 @@ def index():
             session['similars'] = simface.face_similar(session['face_id'], list_id)
             results = simface.get_info(session['idx'], session['similars'][0]['persistedFaceId'])
             results['confidence'] = session['similars'][0]['confidence']
+        if 'idx' not in session:
+            session['idx'] = 'movie'
+            list_id = simface.imageset[session['idx']]
+            session['similars'] = simface.face_similar(session['face_id'], list_id)
+            results = simface.get_info(session['idx'], session['similars'][0]['persistedFaceId'])
+            results['confidence'] = session['similars'][0]['confidence']
     
     if form3.validate_on_submit() and form3.cycle.data:
         if session['k'] < (len(session['similars'])-1):

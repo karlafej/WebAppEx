@@ -29,7 +29,6 @@ def face_similar(face_id, list_id):
     return similars
 
 def get_info(idx, face):
-    info = list()
     results = dict()
     hit = [item for item in infos[idx] if item['faceId'] == face]        
     results['name'] = hit[0].get('name')
