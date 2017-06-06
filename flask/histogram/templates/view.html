@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<head>
+<script>
+function outputUpdate(nbins) {
+    document.querySelector('#sel-bins').value = nbins;
+}
+</script>
+</head>
+<body>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+    	<h3>Histogram of @python_tip likes</h3>
+    </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-2">
+		<form class="navbar-form navbar-top" method=post action="" enctype = "multipart/form-data">
+			<div class="form-group">
+    			
+    				
+        <label class= "control-label">
+          {{ form.nbins.label }} 
+        </label>
+        {{ form.nbins(**{"onchange":"this.form.submit()", "min":10, "max":50, "oninput":"outputUpdate(value)"}) }} 
+        <output for="nbins" id="sel-bins">{{ form.nbins.data }}</output>
+     					
+ 			</div>
+		</form>
+  </div>
+
+
+ 	<div class="col-md-10">
+		{% if result != None %}
+		<img src="data:image/png;base64,{{ result }}" width="800">
+		{% endif %}
+	</div>
+
+</div>
+
+</div>
+</body>
+</html>
