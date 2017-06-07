@@ -57,7 +57,7 @@ class Dash():
             autobinx=False,
             xbins=dict(
                 start=hist_data[1][0],
-                end=hist_data[1][-1],
+                end=hist_data[1][-1]+1,
                 size=binsize
            )
         )
